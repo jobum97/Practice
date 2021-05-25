@@ -16,19 +16,6 @@ public class Main{
 		System.out.print(output);
 	}
 	
-	public static void dfs(int num,int bag) {
-		//System.out.println(num+" "+bag);
-		if(num==0) {
-			min_bag=Math.min(min_bag, bag);
-			return;
-		}
-		if(num<0) {
-			return;
-		}
-		dfs(num-5,bag+1);
-		dfs(num-3,bag+1);
-	}
-	
 	public static void sol(int num) {
 		if(num<0) {
 			min_bag=-1;
