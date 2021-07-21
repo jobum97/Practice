@@ -10,7 +10,6 @@ public class Main{
 		input= new BufferedReader(new InputStreamReader(System.in));
 		int num=Integer.parseInt(input.readLine());
 		
-		//dfs(num,0);
 		sol(num);
 		output.append(min_bag);
 		System.out.print(output);

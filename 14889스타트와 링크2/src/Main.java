@@ -8,13 +8,11 @@ import java.util.StringTokenizer;
 public class Main {
 	static int answer = Integer.MAX_VALUE;
 	static int[][] status;
-	static String src = "6\r\n"
-			+ "0 1 2 3 4 5\r\n"
-			+ "1 0 2 3 4 5\r\n"
-			+ "1 2 0 3 4 5\r\n"
-			+ "1 2 3 0 4 5\r\n"
-			+ "1 2 3 4 0 5\r\n"
-			+ "1 2 3 4 5 0";
+	static String src = "4\r\n"
+			+ "0 1 2 3\r\n"
+			+ "4 0 5 6\r\n"
+			+ "7 1 0 2\r\n"
+			+ "3 4 5 0";
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -35,17 +33,20 @@ public class Main {
 static void score(int length, int N, int start, int link, int length_start, int length_link) {
 		if(length == N) {
 			answer = Math.min(Math.abs(start-link), answer);
+			System.out.println(length+" "+start+" "+link+" "+length_start+" "+length_link);
 		} else {
 			// length 번째 선수가 
 			int add = 0;
 			for(int i = 0; i < N; i++) {
 				add += (status[i][length]+status[length][i]);
+				System.out.println(i+" "+length+" "+status[i][length]+" "+status[length][i]);
 			}
-			// 1. start 팀
+			System.out.println(length+" "+start+" "+link+" "+length_start+" "+length_link+" "+add);
+			// 1. start 팀에 들어가는 경우
 			if(length_start < N/2) {
 				score(length+1, N, start+add, link, length_start+1, length_link);
 			}
-			// 2. link 팀
+			// 2. link 팀에 들어가는 경우 
 			if(length_link < N/2) {
 				score(length+1, N, start, link+add, length_start, length_link+1);
 			}

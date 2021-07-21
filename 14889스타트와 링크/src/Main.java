@@ -105,9 +105,6 @@ public class Main {
 	        tempSUM1+=data[temp[0]][temp[1]];
 	        tempSUM1+=data[temp[1]][temp[0]];
 	        
-	        //System.out.println(temp[0]+" "+temp[1]);
-	        
-	        
 	        return;
 	    } 
 
