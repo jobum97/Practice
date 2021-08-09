@@ -41,28 +41,28 @@ public class Main{
 		
 		quickSort(data);
 		
-		for(int i=0;i<n;i++) {
-			System.out.println(Arrays.toString(data[i]));
-		}
+//		for(int i=0;i<n;i++) {
+//			System.out.println(Arrays.toString(data[i]));
+//		}
 		
 		
 		find(data,0,0);
 		System.out.print(result);
 		
 	}
-	
+	//회의실 선택하는 메소드, 끝나는 시간 오름차순으로 정렬되있기에 greedy하게 선택함
 	public static void find(int[][] data,int start,int index) {
-		if(index>=n) {
+		if(index>=n) { //범위 벗어나면 리턴으로 끝내줌
 			return;
 		}
-		if(start<=data[index][0]) {
+		if(start<=data[index][0]) { //회의 시작 시간이 허락만해주면 바로 집음 
 			start=data[index][1];
 			result++;
 		}
 		find(data,start,index+1);
 	}
 	
-	
+	//퀵소트 메소드 구현 부분
 	public static void quickSort(int[][] arr) {
         sort(arr, 0, arr.length - 1);
     }
@@ -90,7 +90,7 @@ public class Main{
         }
         return low;
     }
-
+    //스왑부분을 조정함으로서 원하는대로 (회의 시간이 끝나는 시간이 빠른순, 같다면 시작시간이 더 빠른순) 정렬
     public static void swap(int[][] arr, int i, int j) {
         int tmp = arr[i][1];
         arr[i][1] = arr[j][1];
