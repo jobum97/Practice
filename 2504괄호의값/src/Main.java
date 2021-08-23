@@ -27,6 +27,7 @@ public class Main{
 		int temp = 1;
 
 		for (int i = 0; i < data.length; i++) {
+			// 입력이 (,[ 인 경우
 			if (data[i] == '(') {
 				temp *= 2;
 				stack.add('(');
@@ -36,18 +37,21 @@ public class Main{
 			}
 			//불가능한 경우
 			else if (data[i] == ')' && (stack.empty() || stack.peek() != '(')) {
-				flag = true;
+				flag = true; //불가능한 경우 저장할 boolean 체크하고 break 으로 탈출
 				break;
 			} else if (data[i] == ']' && (stack.empty() || stack.peek() != '[')) {
 				flag = true;
 				break;
-			} else if (data[i] == ')') {
-				if (data[i - 1] == '(') {
-					result += temp;
+			}
+			// ), ] 으로 마무리되는 경우
+			else if (data[i] == ')') {
+				if (data[i - 1] == '(') { //바로 앞이 ( 이였다면
+					result += temp; // 2를 곱했던 값 result에 더하고
 				}
-				stack.pop();
-				temp /= 2;
-			}else if (data[i] == ']') {
+				stack.pop(); // 스택에서 ( 꺼낸후 
+				temp /= 2; // temp/2 해줌   
+			} //위의 ] 버전
+			else if (data[i] == ']') {
 				if (data[i - 1] == '[') {
 					result += temp;
 				}
@@ -56,8 +60,8 @@ public class Main{
 			}
 		}
 
-		if (flag || !stack.empty()) {
-			System.out.println(0);
+		if (flag || !stack.empty()) { //불가능한 경우이거나 stack을 다 안비운 경우
+			System.out.println(0); 
 		} else {
 			System.out.println(result);
 		}

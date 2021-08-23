@@ -54,19 +54,8 @@ public class Main{
 
 
 		///////////////////////////////
-		/*System.out.println(Arrays.toString(itemData));
-		System.out.println("===============================");
-		for (int i = 1; i <= N; i++) {
-			for (int j = 1; j <= N; j++) {
-				System.out.print(adjArr[i][j]+" ");
-			}
-			System.out.println();
-		}
-		System.out.println("============================");
-*/
-		///////////////////////////////
 
-		//각 지역에서 어느 지역으로 가는데 최소한의 비용을 구할 것임 => minCostMap
+		//각 지역에서 어느 지역으로 가는데 최소한의 비용을 구할 것임 
 		result = 0;
 		checked = new boolean[N + 1];
 		distance = new int[N + 1];
@@ -106,14 +95,15 @@ public class Main{
 
 		while (!PQ.isEmpty()) {
 			Position curP = PQ.poll();
-			int pos = curP.Pos;
+			int pos = curP.Pos; //현재 포지션
 			//System.out.println("출발"+cur);
 
 			//가본 적 없으면
 			if(!checked[pos]){
 				checked[pos] = true;
 				//더 나은 길 있는지 탐색
-				for (Position position : adjList.get(pos)) {
+				for (Position position : adjList.get(pos)) { //position.Pos = 다음 지역
+					//가보지 않은 지역이고 기존의 비용보다 현재 포지션까지오는 비용 + 현재 포지션에서 다음 지역으로 가는 비용이 작다면 갱신 
 					if (!checked[position.Pos] && distance[position.Pos] > distance[pos] + position.cost) {
 						distance[position.Pos] = distance[pos] + position.cost;
 						PQ.add(new Position(position.Pos, distance[position.Pos]));
