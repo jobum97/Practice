@@ -39,6 +39,7 @@ public class Main {
         // 1(1), 2(2), 4(3), 6(4), 9(5),123321 12(6) ,1234321 16(7), 12344321 20(8)
 
         int[] maxDistance = new int[92681];
+        int[] maxDistance2 = new int[92681];
 
         for (int i = 1; i <= 92680; i++) {
             // 이동횟수가 2n - 1 인 경우 최대 이동거리 n^2
@@ -50,7 +51,7 @@ public class Main {
             }
         }
 
-        //System.out.println(Arrays.toString(maxDistance));
+        System.out.println(Arrays.toString(maxDistance));
 
         for (int i = 0; i < testcase; i++) {
             str = new StringTokenizer(input.readLine());
@@ -61,12 +62,25 @@ public class Main {
             int dist = curY - curX;
 
             for (int j = 1; j <= 92680; j++) {
-                if (dist < maxDistance[j]) {
+                if (dist <= maxDistance[j]) {
                     output.append(j + "\n");
                     break;
                 }
             }
         }
+        for (int dist = 1; dist <= 92680 ; dist++) {
+
+            int n = (int) Math.sqrt(dist);
+            if (dist == n * n) {
+                maxDistance2[dist] = 2 * n - 1;
+            } else if (n * n < dist && dist <= n * n + n) {
+                maxDistance2[dist] = 2 * n;
+            } else {
+                maxDistance2[dist] = 2 * n + 1;
+            }
+        }
+        System.out.println(Arrays.toString(maxDistance2));
+
         System.out.println(output);
     }
 }
