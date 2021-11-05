@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -24,24 +25,19 @@ public class Main {
 
 		int N = Integer.parseInt(input.readLine());
 		StringTokenizer str;
-
-		ArrayList<Integer> arrayList = new ArrayList<>();
+		PriorityQueue<Integer> PQ = new PriorityQueue<>();
 
 		for (int i = 0; i < N; i++) {
 			str = new StringTokenizer(input.readLine());
 			for (int j = 0; j < N; j++) {
-				arrayList.add(Integer.parseInt(str.nextToken()));
+				PQ.add(Integer.parseInt(str.nextToken()));
+				if (PQ.size() > N) {
+					PQ.poll();
+				}
 			}
 		}
 
-		arrayList.sort(new Comparator<Integer>() {
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				return o2 - o1;
-			}
-		});
-
-		System.out.println(arrayList.get(N-1));
+		System.out.println(PQ.poll());
 
 	}
 }
