@@ -10,11 +10,13 @@ import java.util.StringTokenizer;
 public class Main {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	 static StringBuilder output = new StringBuilder();
-	 static String src = "4 4\n" +
-			 "0111\n" +
-			 "1111\n" +
-			 "1111\n" +
-			 "1110";
+	 static String src = "6 6\n" +
+			 "011110\n" +
+			 "100110\n" +
+			 "110110\n" +
+			 "000110\n" +
+			 "011110\n" +
+			 "000000";
 
     static int[][] moveSet = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
