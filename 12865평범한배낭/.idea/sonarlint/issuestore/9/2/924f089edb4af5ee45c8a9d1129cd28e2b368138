@@ -1,20 +1,0 @@
-
-g
-java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô« Ãúÿÿÿÿ
-g
-java:S3008"LRename this field "K" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô« Ãúÿÿÿÿ
-:
-java:S1659"Declare "K" on a separate line.(Ô« Ãúÿÿÿÿ
-V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
-@
-java:S1197"*Move the array designators [] to the type.(äàø
-E
-java:S1197"*Move the array designators [] to the type.(óÎ÷³þÿÿÿÿ
-G
-java:S1197"*Move the array designators [] to the type.(Âïþ«8Ç¿¼ëí/
-S	java:S106."9Replace this use of System.out or System.err by a logger.(Š¤º‹ùÿÿÿÿ
-]	java:S125-"<This block of commented-out lines of code should be removed.(–îæÿÿÿÿÿ8¿’¾ëí/
-O
-java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8¿’¾ëí/
-f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äàø
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óÎ÷³þÿÿÿÿ
