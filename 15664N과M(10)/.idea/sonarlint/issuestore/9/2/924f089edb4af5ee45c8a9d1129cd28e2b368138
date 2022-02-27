@@ -1,0 +1,21 @@
+
+g
+java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£™¡ùüÿÿÿÿ
+g
+java:S3008"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£™¡ùüÿÿÿÿ
+Y
+java:S1659">Declare "M" and all following declarations on a separate line.(£™¡ùüÿÿÿÿ
+E
+java:S1197"*Move the array designators [] to the type.(£™¡ùüÿÿÿÿ
+G
+java:S1197",Move the array designators [][] to the type.(£™¡ùüÿÿÿÿ
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(œû¿Ø
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+V	java:S125,"<This block of commented-out lines of code should be removed.(ßŠ©»ıÿÿÿÿ
+V	java:S1251"<This block of commented-out lines of code should be removed.(Ô†Øøÿÿÿÿ
+Z	java:S106Y"9Replace this use of System.out or System.err by a logger.(˜ÇšŒùÿÿÿÿ8äÙ·Îó/
+C
+java:S1604<"(Make this anonymous inner class a lambda(ÓªàÂûÿÿÿÿ
+>
+java:S1643P"Use a StringBuilder instead.(œØÉûıÿÿÿÿ8¹ç¿Îó/

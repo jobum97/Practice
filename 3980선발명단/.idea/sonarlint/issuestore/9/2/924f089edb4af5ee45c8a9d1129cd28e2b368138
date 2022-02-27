@@ -1,0 +1,18 @@
+
+h
+java:S3008"MRename this field "TC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øªèàıÿÿÿÿ
+p
+java:S3008"NRename this field "Max" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øªèàıÿÿÿÿ8º®ôÒó/
+k
+java:S3008"PRename this field "Table" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øªèàıÿÿÿÿ
+b
+java:S1659"@Declare "Max" and all following declarations on a separate line.(øªèàıÿÿÿÿ8»®ôÒó/
+G
+java:S1197",Move the array designators [][] to the type.(øªèàıÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+X	java:S125)"<This block of commented-out lines of code should be removed.(Ã«ı©8ÓáÃÓó/
+Z	java:S1060"9Replace this use of System.out or System.err by a logger.(˜ÇšŒùÿÿÿÿ8¤ÿöÒó/
+c	java:S1003"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ–ê
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8ÔáÃÓó/
+f	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ–ê
