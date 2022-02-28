@@ -1,0 +1,19 @@
+
+b
+java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ßİ—
+c
+java:S3008"MRename this field "HP" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ßİ—
+U
+java:S1659"?Declare "HP" and all following declarations on a separate line.(¼ßİ—
+E
+java:S1197"*Move the array designators [] to the type.(Ÿ¤ÕŒûÿÿÿÿ
+G
+java:S1197",Move the array designators [][] to the type.(‹…ïûùÿÿÿÿ
+G
+java:S1197",Move the array designators [][] to the type.(Éÿ†üÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+]	java:S125'"<This block of commented-out lines of code should be removed.(ÍÁ€ üÿÿÿÿ8‚ñ€ƒô/
+Z	java:S1069"9Replace this use of System.out or System.err by a logger.(¡ò†şÿÿÿÿ8¸Ê€ƒô/
+U	java:S106;"9Replace this use of System.out or System.err by a logger.(ô¤„å8¸Ê€ƒô/
+B
+java:S1125H"'Remove the unnecessary boolean literal.(£ë­šşÿÿÿÿ

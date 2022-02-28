@@ -1,0 +1,15 @@
+
+b
+java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²Í¸§
+b
+java:S3008"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²Í¸§
+T
+java:S1659">Declare "M" and all following declarations on a separate line.(²Í¸§
+@
+java:S1197"*Move the array designators [] to the type.(²Í¸§
+@
+java:S1197"*Move the array designators [] to the type.(²Í¸§
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+S	java:S106*"9Replace this use of System.out or System.err by a logger.(˜ÇšŒùÿÿÿÿ
+1
+java:S36266"Remove this redundant jump.(ûÁÝ…
