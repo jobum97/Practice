@@ -1,0 +1,28 @@
+
+M
+java:S6126"2Replace this String concatenation with Text block.(ÀËàÇúÿÿÿÿ
+F
+java:S1197Ÿ"*Move the array designators [] to the type.(²Á€œüÿÿÿÿ
+W	java:S125 "<This block of commented-out lines of code should be removed.(›´³Âøÿÿÿÿ
+O	java:S106¾"9Replace this use of System.out or System.err by a logger.(šÍŠÈ
+N	java:S106Ã"9Replace this use of System.out or System.err by a logger.(‰Ó¦$
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+<
+java:S1128"&Remove this unused import 'java.math'.(âî©
+c
+java:S1192"HDefine a constant instead of duplicating this literal "1 2\r
+" 41 times.(÷Ã¯¤ùÿÿÿÿ
+c
+java:S1192"HDefine a constant instead of duplicating this literal "1 1\r
+" 20 times.( Ê†Áüÿÿÿÿ
+\
+java:S1192"FDefine a constant instead of duplicating this literal "0\r
+" 37 times.(ã†‹ø
+^
+java:S1192&"HDefine a constant instead of duplicating this literal "2 2\r
+" 15 times.(ÛıÚ„
+c
+java:S1192"HDefine a constant instead of duplicating this literal "2 1\r
+" 17 times.(œ×¸çøÿÿÿÿ
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®ƒæd

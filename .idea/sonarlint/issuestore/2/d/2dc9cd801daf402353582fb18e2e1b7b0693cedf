@@ -1,0 +1,29 @@
+
+a
+java:S3008"LRename this field "V" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØÆšE
+a
+java:S3008"LRename this field "E" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØÆšE
+k
+java:S3008"PRename this field "Table" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚şïÀúÿÿÿÿ
+S
+java:S1659">Declare "E" and all following declarations on a separate line.(ØÆšE
+M
+java:S6126"2Replace this String concatenation with Text block.(³ü¾†ûÿÿÿÿ
+?
+java:S1197"*Move the array designators [] to the type.(ØÆšE
+G
+java:S1197",Move the array designators [][] to the type.(‚şïÀúÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+S	java:S1068"9Replace this use of System.out or System.err by a logger.(Ò³ÇÙÿÿÿÿÿ
+Q	java:S1257"<This block of commented-out lines of code should be removed.(û»É©
+b	java:S100="NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—ß÷"
+E
+java:S1197A"*Move the array designators [] to the type.(¦š£¯ÿÿÿÿÿ
+t
+java:S1210e"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(È¶­üÿÿÿÿ
+t
+java:S1210v"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(£ıèˆøÿÿÿÿ
+c	java:S100‹"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ¬u
+E
+java:S1121€".Extract the assignment out of this expression.(¾òõ«
+n	java:S135C"YReduce the total number of break and continue statements in this loop to use at most one.(„ÿ° 
