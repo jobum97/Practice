@@ -1,0 +1,41 @@
+
+<
+java:S1659"!Declare "col" on a separate line.(ñÜ³ëùÿÿÿÿ
+M
+java:S6126
+"2Replace this String concatenation with Text block.(ýøþ«þÿÿÿÿ
+m
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 61 to the 15 allowed.(¹¾¾Ôùÿÿÿÿ
+O
+java:S1854E"9Remove this useless assignment to local variable "order".(™µýé
+E
+java:S1197"*Move the array designators [] to the type.(¹¾¾Ôùÿÿÿÿ
+^
+java:S1659"CDeclare "tank_y" and all following declarations on a separate line.(„‰üÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+6	java:S131H""Add a default case to this switch.(éâßp
+N	java:S106~"9Replace this use of System.out or System.err by a logger.(¢àóÄ
+i
+java:S3776€"RRefactor this method to reduce its Cognitive Complexity from 33 to the 15 allowed.(“êÓ
+F
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+t	java:S135ƒ"YReduce the total number of break and continue statements in this loop to use at most one.(µœúþÿÿÿÿ
+t	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(Ö‡æÒüÿÿÿÿ
+t	java:S135œ"YReduce the total number of break and continue statements in this loop to use at most one.(Š‰¢Ïûÿÿÿÿ
+t	java:S135¨"YReduce the total number of break and continue statements in this loop to use at most one.(Ñéš¯øÿÿÿÿ
+E
+java:S1066K"/Merge this if statement with the enclosing one.(ôÈ…ê
+J
+java:S1066U"/Merge this if statement with the enclosing one.(¥•øÿûÿÿÿÿ
+J
+java:S1066_"/Merge this if statement with the enclosing one.(ŸŸ·òþÿÿÿÿ
+D
+java:S1066i"/Merge this if statement with the enclosing one.(™âÀJ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„‰üÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„‰üÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„‰üÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶˜†…
+g	java:S117€"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“êÓ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(™µ¡æ

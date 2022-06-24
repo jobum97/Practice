@@ -1,0 +1,23 @@
+
+i
+java:S3008"SRename this field "adj_list" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍŠÓô
+H
+java:S6126"2Replace this String concatenation with Text block.(ß€œ
+E
+java:S1197"*Move the array designators [] to the type.(²Á€œüÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+O	java:S125;"<This block of commented-out lines of code should be removed.(»ñ4
+N	java:S106O"9Replace this use of System.out or System.err by a logger.(¢àóÄ
+h	java:S100R"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìˆØÙÿÿÿÿÿ
+c	java:S100a"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îçæ›
+B
+java:S1172a",Remove this unused method parameter "index".(îçæ›
+Q	java:S125r"<This block of commented-out lines of code should be removed.(íÊÅÏ
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+o
+java:S2293$"YReplace the type specification in this constructor call with the diamond operator ("<>").(Öå¦‚
+o
+java:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ò®öˆ
+t
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥ÙÛşÿÿÿÿ

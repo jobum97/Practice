@@ -1,0 +1,19 @@
+
+g
+java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËİÃøÿÿÿÿ
+g
+java:S3008"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËİÃøÿÿÿÿ
+Y
+java:S1659">Declare "M" and all following declarations on a separate line.(ËİÃøÿÿÿÿ
+H
+java:S6126"2Replace this String concatenation with Text block.(­ıë„
+G
+java:S1197",Move the array designators [][] to the type.(ËİÃøÿÿÿÿ
+E
+java:S1197"*Move the array designators [] to the type.(ËİÃøÿÿÿÿ
+G
+java:S1197",Move the array designators [][] to the type.(Ù¨àÓüÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+S	java:S1069"9Replace this use of System.out or System.err by a logger.(˜ÇšŒùÿÿÿÿ
+‰
+java:S1319="nThe type of "possiblePoints" should be an interface such as "List" rather than the implementation "ArrayList".(ş¼àÈşÿÿÿÿ

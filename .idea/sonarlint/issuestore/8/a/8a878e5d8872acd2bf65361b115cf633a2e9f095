@@ -1,0 +1,15 @@
+
+H
+java:S6126"2Replace this String concatenation with Text block.(« ˆÔ
+E
+java:S1197"*Move the array designators [] to the type.(²Á€œüÿÿÿÿ
+W
+java:S1659"BDeclare "level" and all following declarations on a separate line.(ž€öN
+V	java:S125"<This block of commented-out lines of code should be removed.(…’ÖËøÿÿÿÿ
+S	java:S106)"9Replace this use of System.out or System.err by a logger.(˜ÇšŒùÿÿÿÿ
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(â¤´
+\
+java:S2184$"FCast one of the operands of this multiplication operation to a "long".( ÀÆÍ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ï«µÇúÿÿÿÿ
