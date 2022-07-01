@@ -1,126 +1,85 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.StringReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    static BufferedReader input;
-    static StringBuilder output = new StringBuilder();
-    static String src = "2\n" +
-            "3 3 1\n" +
-            "1 2 2\n" +
-            "1 3 4\n" +
-            "2 3 1\n" +
-            "3 1 3\n" +
-            "3 2 1\n" +
-            "1 2 3\n" +
-            "2 3 4\n" +
-            "3 1 8";
 
-    static int N, M, W;
-    static ArrayList<ArrayList<Road>> adjList;
+    static int n, m, w, INF = 987654321;
+    static List<int[]>[] list;
+    static int[] dist;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int tc = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        while(tc-->0) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            n = Integer.parseInt(st.nextToken());
+            m = Integer.parseInt(st.nextToken());
+            w = Integer.parseInt(st.nextToken());
 
-    public static void main(String[] args) throws IOException {
-
-        input = new BufferedReader(new InputStreamReader(System.in));
-        input = new BufferedReader(new StringReader(src));
-
-        int tc = Integer.parseInt(input.readLine());
-
-        for (int testcase = 1; testcase <= tc; testcase++) {
-            StringTokenizer str = new StringTokenizer(input.readLine());
-
-            N = Integer.parseInt(str.nextToken()); // 지점
-            M = Integer.parseInt(str.nextToken()); // 도로
-            W = Integer.parseInt(str.nextToken()); // 웜홀
-
-            adjList = new ArrayList<>();
-            for (int i = 0; i <= N; i++) {
-                adjList.add(new ArrayList<>());
+            list = new ArrayList[n+1];
+            dist = new int[n+1];
+            for(int i=1; i<n+1; i++) {
+                list[i] = new ArrayList<>();
             }
 
+            for(int i=0; i<m+w; i++) {
+                st = new StringTokenizer(br.readLine());
+                int s = Integer.parseInt(st.nextToken());
+                int e = Integer.parseInt(st.nextToken());
+                int t = Integer.parseInt(st.nextToken());
 
-            for (int i = 0; i < M; i++) {
-                str = new StringTokenizer(input.readLine());
-
-                int S = Integer.parseInt(str.nextToken()); // 출발
-                int E = Integer.parseInt(str.nextToken()); // 도착
-                int T = Integer.parseInt(str.nextToken()); // 시간
-
-                adjList.get(S).add(new Road(E, T));
-                adjList.get(E).add(new Road(S, T));
+                if(i > m-1) {
+                    list[s].add(new int[] {e,-t});
+                }else {
+                    list[s].add(new int[] {e,t});
+                    list[e].add(new int[] {s,t});
+                }
             }
 
-            for (int i = 0; i < W; i++) {
-                str = new StringTokenizer(input.readLine());
-
-                int S = Integer.parseInt(str.nextToken()); // 출발
-                int E = Integer.parseInt(str.nextToken()); // 도착
-                int T = Integer.parseInt(str.nextToken()); // 시간
-
-                adjList.get(S).add(new Road(E, -T));
-            }
-
-            boolean isPossible = false;
-            for (int i = 1; i <= N; i++) {
-                if (getCost(i) < 0) {
-                    isPossible = true;
+            boolean f = false;
+            for(int i=1; i<=n; i++) {
+                if(bellmanford(i)) {
+                    f = true;
                     break;
                 }
             }
 
-            if (isPossible) {
-                output.append("YES").append("\n");
-            }else{
-                output.append("NO").append("\n");
+            if(f) {
+                sb.append("YES\n");
+            }else {
+                sb.append("NO\n");
             }
-
-
         }
-        System.out.println(output);
-
+        System.out.println(sb.toString());
     }
 
-    public static int getCost(int start){
+    static boolean bellmanford(int s) {
+        Arrays.fill(dist, INF);
+        dist[s] = 0;
 
-        Queue<Integer> queue = new LinkedList<>();
-        int[] costTable = new int[N + 1];
-        Arrays.fill(costTable, 10001);
+        boolean isUpdated = false;
+        for(int i=0; i<n; i++) {
+            isUpdated = false;
+            for(int j=1; j<n+1; j++) {
+                int cur = j;
+                for(int[] route : list[j]) {
+                    int nxt = route[0];
+                    int cost = route[1];
 
-        for (Road road : adjList.get(start)) {
-            queue.add(road.next);
-            costTable[road.next] = road.time;
-        }
+                    if(dist[cur] == INF) continue;
 
-
-        while (!queue.isEmpty()) {
-            int cur = queue.poll();
-
-            if (costTable[start] < 0) {
-                break;
-            }
-
-            for (Road road : adjList.get(cur)) {
-                if (costTable[road.next] > costTable[cur] + road.time) {
-                   /// System.out.println(Arrays.toString(costTable));
-                    queue.add(road.next);
-                    costTable[road.next] = costTable[cur] + road.time;
-
+                    if(dist[nxt] > dist[cur] + cost) {
+                        dist[nxt] = dist[cur] + cost;
+                        isUpdated = true;
+                        if(i == n-1) {
+                            return true;
+                        }
+                    }
                 }
             }
+
+            if(!isUpdated) break;
         }
-        return costTable[start];
-    }
-
-
-    public static class Road{
-        int next;
-        int time;
-
-        public Road(int next, int time) {
-            this.next = next;
-            this.time = time;
-        }
+        return false;
     }
 }

@@ -19,6 +19,7 @@ public class Main {
             "3 1 8";
 
     static int N, M, W;
+    static int[] costTable;
     static ArrayList<ArrayList<Road>> adjList;
 
     public static void main(String[] args) throws IOException {
@@ -34,7 +35,7 @@ public class Main {
             N = Integer.parseInt(str.nextToken()); // 지점
             M = Integer.parseInt(str.nextToken()); // 도로
             W = Integer.parseInt(str.nextToken()); // 웜홀
-
+            costTable = new int[N + 1];
             adjList = new ArrayList<>();
             for (int i = 0; i <= N; i++) {
                 adjList.add(new ArrayList<>());
@@ -85,7 +86,6 @@ public class Main {
     public static int getCost(int start){
 
         Queue<Integer> queue = new LinkedList<>();
-        int[] costTable = new int[N + 1];
         Arrays.fill(costTable, 10001);
 
         for (Road road : adjList.get(start)) {
