@@ -2,11 +2,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
     static BufferedReader input;
-    static String src = "7 8 1\n" +
+    static String src = "7 8 50\n" +
             "0 0 0 0 0 0 0 9\n" +
             "0 0 0 0 3 0 0 8\n" +
             "-1 0 5 0 0 0 22 0\n" +
@@ -15,11 +18,13 @@ public class Main {
             "0 0 5 0 15 0 0 0\n" +
             "0 0 40 0 0 0 20 0";
 
-    static int R, C, T, map[][];
+    static int R, C, T, map[][], cleanerRow1, cleanerRow2;
+    static Queue<Diffusion> queue = new LinkedList<>();
+    static int moveSet[][] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
 
     public static void main(String[] args) throws IOException {
-        input = new BufferedReader(new InputStreamReader(System.in));/
+        input = new BufferedReader(new InputStreamReader(System.in));
         input = new BufferedReader(new StringReader(src));
 
         StringTokenizer str = new StringTokenizer(input.readLine());
@@ -30,28 +35,179 @@ public class Main {
 
         map = new int[R + 1][C + 1];
 
-        for (int i = 0; i < R; i++) {
+        boolean isFirst = true;
+
+        for (int i = 1; i <= R; i++) {
             str = new StringTokenizer(input.readLine());
-            for (int j = 0; j < C; j++) {
+            for (int j = 1; j <= C; j++) {
                 map[i][j] = Integer.parseInt(str.nextToken());
+                if (map[i][j] == -1) {
+                    if (isFirst) {
+                        cleanerRow1 = i;
+                        isFirst = false;
+                    }else{
+                        cleanerRow2 = i;
+                    }
+                }
             }
         }
 
-        //미세먼지가 확산된다. 확산은 미세먼지가 있는 모든 칸에서 동시에 일어난다.
-        //(r, c)에 있는 미세먼지는 인접한 네 방향으로 확산된다.
-        //인접한 방향에 공기청정기가 있거나, 칸이 없으면 그 방향으로는 확산이 일어나지 않는다.
-        //확산되는 양은 Ar,c/5이고 소수점은 버린다.
-        //(r, c)에 남은 미세먼지의 양은 Ar,c - (Ar,c/5)×(확산된 방향의 개수) 이다.
+        int time = 0;
+        while (true) {
 
-        //공기청정기가 작동한다.
-        //공기청정기에서는 바람이 나온다.
-        //위쪽 공기청정기의 바람은 반시계방향으로 순환하고, 아래쪽 공기청정기의 바람은 시계방향으로 순환한다.
-        //바람이 불면 미세먼지가 바람의 방향대로 모두 한 칸씩 이동한다.
-        //공기청정기에서 부는 바람은 미세먼지가 없는 바람이고, 공기청정기로 들어간 미세먼지는 모두 정화된다.
+            if (time == T) {
+                break;
+            }
+            for (int i = 1; i <= R; i++) {
+                for (int j = 1; j <= C; j++) {
+                    if (map[i][j] > 0) {
+                        dustDiffusion(i, j);
+                    }
+                }
+            }
+            diffusion();
+            //showMap();
+            windFlow1();
+            windFlow2();
+            //showMap();
+            time++;
+        }
+
+        System.out.println(countDust());
+    }
+
+    public static int countDust(){
+        int dust = 0;
+        for (int i = 1; i <= R; i++) {
+            for (int j = 1; j <= C; j++) {
+                if (map[i][j] > 0) {
+                    dust += map[i][j];
+                }
+            }
+        }
+        return dust;
+    }
+
+    public static void showMap(){
+        for (int i = 1; i <= R; i++) {
+            for (int j = 1; j <= C; j++) {
+                System.out.print(map[i][j] + ",");
+            }
+            System.out.println();
+        }
+        System.out.println("==========================");
+    }
+
+    // 반시계방향
+    public static void windFlow1(){
+        int leftUp = map[1][1];
+        int rightUp = map[1][C];
+        int rightDown = map[cleanerRow1][C];
+
+        for (int i = C; i >= 3; i--) {
+            map[cleanerRow1][i] = map[cleanerRow1][i - 1];
+        }
+        map[cleanerRow1][2] = 0;
+
+        //showMap();
+
+        for (int i = 1; i <= cleanerRow1 - 2; i++) {
+            map[i][C] = map[i + 1][C];
+        }
+        map[cleanerRow1 - 1][C] = rightDown;
+
+        //showMap();
+
+        for (int i = 1; i <= C - 2; i++) {
+            map[1][i] = map[1][i + 1];
+        }
+        map[1][C - 1] = rightUp;
+
+        //showMap();
+
+        for (int i = cleanerRow1 - 1; i > 2; i--) {
+            map[i][1] = map[i - 1][1];
+        }
+        map[2][1] = leftUp;
 
     }
 
-    public static void dustDiffusion(){
+    // 시계방향
+    public static void windFlow2(){
+        int leftDown = map[R][1];
+        int rightUp = map[cleanerRow2][C];
+        int rightDown = map[R][C];
 
+        for (int i = C; i >= 3; i--) {
+            map[cleanerRow2][i] = map[cleanerRow2][i - 1];
+        }
+        map[cleanerRow2][2] = 0;
+
+//        showMap();
+
+        for (int i = R; i >= cleanerRow2 + 2; i--) {
+            map[i][C] = map[i - 1][C];
+        }
+        map[cleanerRow2 + 1][C] = rightUp;
+
+//        showMap();
+
+        for (int i = 1; i <= C - 2; i++) {
+            map[R][i] = map[R][i + 1];
+        }
+        map[R][C - 1] = rightDown;
+
+//        showMap();
+
+        for (int i = cleanerRow2 + 1; i < R; i++) {
+            map[i][1] = map[i + 1][1];
+        }
+        map[R-1][1] = leftDown;
+
+    }
+
+    public static void dustDiffusion(int row, int col) {
+
+        int diffusionDust = map[row][col] / 5;
+        int count = 0;
+
+        for (int i = 0; i < 4; i++) {
+            int nextRow = row + moveSet[i][0];
+            int nextCol = col + moveSet[i][1];
+
+            // 칸이 없는 경우
+            if (nextRow <= 0 | nextCol <= 0 | nextRow > R | nextCol > C) {
+                continue;
+            }
+
+            // 공기청정기 있는 경우
+            if (map[nextRow][nextCol] == -1) {
+                continue;
+            }
+
+            queue.add(new Diffusion(nextRow, nextCol, diffusionDust));
+            count++;
+        }
+
+        queue.add(new Diffusion(row, col, -diffusionDust * count));
+    }
+
+    public static void diffusion() {
+        while (!queue.isEmpty()) {
+            Diffusion diffusion = queue.poll();
+            map[diffusion.row][diffusion.col] += diffusion.dust;
+        }
+    }
+
+    public static class Diffusion {
+        int row;
+        int col;
+        int dust;
+
+        public Diffusion(int row, int col, int dust) {
+            this.row = row;
+            this.col = col;
+            this.dust = dust;
+        }
     }
 }
