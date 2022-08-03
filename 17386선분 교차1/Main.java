@@ -30,12 +30,6 @@ public class Main {
             data[i * 2 + 1] = new Point(x, y);
         }
 
-        // 선분 AB, CD 가 있다고 할때 교차 확인하는 방법은
-        // CCW(A,B,C), CCW(A,B,D) 의 곱이 음수 혹은 0
-        // CCW(C,D,A), CCW(C,D,B) 의 곱이 음수 혹은 0
-        // A<= D
-        // B>= C
-
         if (isValid(data)) {
             System.out.println(1);
         } else {
@@ -44,7 +38,7 @@ public class Main {
     }
 
     public static int CCW(Point A, Point B, Point C) {
-        int ans = (B.x - A.x) * (C.y - A.y) - (B.y - A.y) * (C.x - A.x);
+        long ans = A.x * B.y + B.x * C.y + C.x * A.y - A.y * B.x - B.y * C.x - C.y * A.x;
 
         if (ans < 0) {
             return -1;
@@ -56,19 +50,20 @@ public class Main {
     }
 
     public static boolean isValid(Point[] data){
-        boolean state1 = CCW(data[0], data[1], data[2]) * CCW(data[0], data[1], data[3]) <= 0;
-        boolean state2 = CCW(data[2], data[3], data[0]) * CCW(data[2], data[3], data[1]) <= 0;
-        boolean state3 = data[0].x <= data[3].x && data[0].y <= data[3].y;
-        boolean state4 = data[1].x >= data[1].x && data[2].y >= data[2].y;
+        // 선분 AB, CD 가 있다고 할때 교차 확인하는 방법은
+        // CCW(A,B,C), CCW(A,B,D) 의 곱이 음수 혹은 0
+        // CCW(C,D,A), CCW(C,D,B) 의 곱이 음수 혹은 0
+        boolean state1 = (CCW(data[0], data[1], data[2]) * CCW(data[0], data[1], data[3])) < 0;
+        boolean state2 = (CCW(data[2], data[3], data[0]) * CCW(data[2], data[3], data[1])) < 0;
 
-        return state1 && state2 && state3 && state4;
+        return state1 && state2;
     }
 
     public static class Point{
-        int x;
-        int y;
+        long x;
+        long y;
 
-        public Point(int x, int y) {
+        public Point(long x, long y) {
             this.x = x;
             this.y = y;
         }
