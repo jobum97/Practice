@@ -4,20 +4,17 @@ import java.util.*;
 public class Main {
     static BufferedReader input;
     static StringBuilder output = new StringBuilder();
-    static String src = "5 2 2\n" +
-            "1\n" +
-            "2\n" +
-            "3\n" +
-            "4\n" +
-            "5\n" +
-            "1 3 0\n" +
-            "2 2 5\n" +
-            "1 3 6\n" +
-            "2 2 5";
+    static String src = "4 1 2\n" +
+            "1000000\n" +
+            "1000000\n" +
+            "1000000\n" +
+            "1000000\n" +
+            "2 1 4\n" +
+            "1 2 1\n" +
+            "2 1 4";
 
-    static int N, M, K, INF = 1000000007,data[];
-    static long dp[][];
-
+    static int N, M, K, INF = 1000000007;
+    static long segmentTree[], arr[];
 
     public static void main(String[] args) throws IOException {
 
@@ -30,49 +27,64 @@ public class Main {
         M = Integer.parseInt(str.nextToken());
         K = Integer.parseInt(str.nextToken());
 
-        data = new int[N + 1];
-        dp = new long[N + 1][N + 1];
-        for (int i = 1; i <= N; i++) {
-            data[i] = Integer.parseInt(input.readLine());
-            dp[i][i] = data[i];
-        }
+        arr = new long[N + 1];
+        segmentTree = new long[N * 4 + 1];
 
         for (int i = 1; i <= N; i++) {
-            for (int j = i + 1; j <= N; j++) {
-                dp[i][j] = (dp[i][j - 1] * data[j]) % INF;
-            }
+            arr[i] = Long.parseLong(input.readLine());
         }
 
+        init(1, N, 1);
+        //System.out.println(Arrays.toString(segmentTree));
         for (int i = 0; i < M + K; i++) {
             str = new StringTokenizer(input.readLine());
             int order = Integer.parseInt(str.nextToken());
-            int origin = Integer.parseInt(str.nextToken());
-            int update = Integer.parseInt(str.nextToken());
-           // printDp();
+            int s = Integer.parseInt(str.nextToken());
+            long e = Long.parseLong(str.nextToken());
+
             if (order == 1) {
-                swap(origin, update);
+                arr[s] = e;
+                update(1, N, 1, s, e);
+               // System.out.println(Arrays.toString(segmentTree));
             } else if (order == 2) {
-                output.append(dp[origin][update]).append("\n");
+                output.append(interval_mul(1, N, 1, s, (int) e)).append("\n");
             }
         }
         System.out.print(output);
 
     }
 
-    public static void printDp(){
-        for (int i = 1; i <= N; i++) {
-            System.out.println(Arrays.toString(dp[i]));
+    public static long init(int start, int end, int idx) {
+        //System.out.println(start+" "+end+" "+idx);
+        if (start == end) {
+            return segmentTree[idx] = arr[start];
         }
+        int mid = (start + end) / 2;
+        return segmentTree[idx] = (init(start, mid, idx * 2) * init(mid + 1, end, idx * 2 + 1) % INF);
     }
 
-    public static void swap(int origin, int update){
-        data[origin] = update;
-        dp[origin][origin] = update;
-        for (int i = 1; i <= N; i++) {
-            for (int j = i + 1; j <= N; j++) {
-                dp[i][j] = (dp[i][j - 1] * data[j]) % INF;
-            }
+    public static long update(int start, int end, int idx, int what, long diff) {
+        if (what < start || what > end) {
+            return segmentTree[idx];
         }
+
+        if (start == end) {
+            return segmentTree[idx] = diff;
+        }
+        int mid = (start + end) / 2;
+        return segmentTree[idx] = (update(start, mid, idx * 2, what, diff) * update(mid + 1, end, idx * 2 + 1, what, diff)) % INF;
     }
 
+    public static long interval_mul(int start, int end, int idx, int left, int right) {
+        if (left > end || right < start) {
+            return 1;
+        }
+
+        if (left <= start && right >= end) {
+            return segmentTree[idx];
+        }
+
+        int mid = (start + end) / 2;
+        return ((interval_mul(start, mid, idx * 2, left, right) * interval_mul(mid + 1, end, idx * 2 + 1, left, right)) % INF);
+    }
 }

@@ -13,7 +13,7 @@ public class Main {
             "1 3 6\n" +
             "2 1 5\n" +
             "1 3 3\n" +
-            "2 1 5";
+            "2 4 5";
 
     static int N, M, K;
     static long segmentTree[], arr[];
@@ -73,12 +73,14 @@ public class Main {
 
     // start: 시작, end: 마지막, left, right: 구하고자 하는 구간
     public static long interval_sum(int start, int end, int index, int left, int right){
-        //System.out.println(start + " " + end + " " + index);
+        System.out.println(start + " " + end + " " + index);
         // 범위 초과한 경우
         if (left > end || right < start) {
+            System.out.println("펑");
             return 0;
         }
         if (left <= start && right >= end) {
+            System.out.println("return " + segmentTree[index]);
             return segmentTree[index];
         }
         int mid = (start + end) / 2;
