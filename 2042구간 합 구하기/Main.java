@@ -4,17 +4,8 @@ import java.io.*;
 public class Main {
     static BufferedReader input;
     static StringBuilder output = new StringBuilder();
-    static String src = "5 2 2\n" +
-            "1\n" +
-            "2\n" +
-            "3\n" +
-            "4\n" +
-            "5\n" +
-            "1 3 6\n" +
-            "2 1 5\n" +
-            "1 3 3\n" +
-            "2 4 5";
-
+    static String src = "100 0 1\n" +
+            "2 26 75\n";
     static int N, M, K;
     static long segmentTree[], arr[];
 
@@ -35,7 +26,7 @@ public class Main {
         segmentTree = new long[N * 4 + 1];
 
         for (int i = 1; i <= N; i++) {
-            arr[i] = Long.parseLong(input.readLine());
+            arr[i] = i;
         }
 
         init(1, N, 1);
