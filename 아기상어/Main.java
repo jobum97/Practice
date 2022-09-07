@@ -1,99 +1,127 @@
-import java.io.*;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 
 public class Main {
-    static BufferedReader input;
-    static StringBuilder output = new StringBuilder();
-    static String src = "4\n" +
-            "4 3 2 1\n" +
-            "0 0 0 0\n" +
-            "0 0 9 0\n" +
-            "1 2 3 4";
 
-    static int N, map[][], shark_row, shark_col, shark_size, shark_stack;
-    static PriorityQueue<Fish> fishList;
-    static PriorityQueue<Fish> fishQueue;
+    private static int[] dx = {1, 0, -1, 0};
+    private static int[] dy = {0, 1, 0, -1};
+    private static int N;
+    private static int[][] map;
+    private static int[][] dist;
+    private static int sharkSize = 2;
+    private static int eatingCount = 0;
+    private static int count = 0;
+    private static int sharkX = -1;
+    private static int sharkY = -1;
+    private static int minX;
+    private static int minY;
+    private static int minDist;
 
-    public static void main(String[] args) throws IOException {
 
-        input = new BufferedReader(new InputStreamReader(System.in));
-        input = new BufferedReader(new StringReader(src));
-        //풀이
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        N = Integer.parseInt(input.readLine());
-
+        N = scanner.nextInt();
         map = new int[N + 1][N + 1];
-        StringTokenizer str;
-        fishList = new PriorityQueue<>(new Comparator<Fish>() {
-            @Override
-            public int compare(Fish o1, Fish o2) {
-                return o1.size - o2.size;
-            }
-        });
-        fishQueue = new PriorityQueue<>(new Comparator<Fish>() {
-            @Override
-            public int compare(Fish o1, Fish o2) {
-                if (o1.row == o2.row) {
-                    return o1.col - o2.col;
-                }
-                return o1.row - o2.row;
-            }
-        });
+
         for (int i = 1; i <= N; i++) {
-            str = new StringTokenizer(input.readLine());
             for (int j = 1; j <= N; j++) {
-                map[i][j] = Integer.parseInt(str.nextToken());
+                map[i][j] = scanner.nextInt();
+
                 if (map[i][j] == 9) {
-                    shark_row = i;
-                    shark_col = j;
-                } else if (map[i][j] != 0) {
-                    fishQueue.add(new Fish(i, j, map[i][j]));
+                    sharkX = i;
+                    sharkY = j;
+                    map[i][j] = 0;
                 }
             }
         }
-        shark_size = 1;
-        shark_stack = 0;
 
-        sol();
-    }
+        while (true) {
+            dist = new int[N + 1][N + 1];
+            minX = Integer.MAX_VALUE;
+            minY = Integer.MAX_VALUE;
+            minDist = Integer.MAX_VALUE;
 
-    public static void sol() {
-        // 아기 상어 크기 2
-        // 자기 보다 작은 것만 먹을 수 있음 + 자기 보다 큰 물고기 있는 칸은 지나갈 수 없음
-        // 자기 보다 작은 놈 없으면 엄마 상어 부름
-        // 먹을 놈들 중 거리가 같다면 가장위, 가장 왼쪽부터 먹는다
+            bfs(sharkX, sharkY);
 
-        //먹을 수 있는 놈들 중에서 거리랑 위치를 따져가면서 먹는다
-        // => FishList 에서는 무게별로 리스트 확보
-        // 시간
+            if (minX != Integer.MAX_VALUE && minY != Integer.MAX_VALUE) {
+                eatingCount++;
+                map[minX][minY] = 0;
+                sharkX = minX;
+                sharkY = minY;
+                count += dist[minX][minY];
 
-    }
-
-    public static void eat(){
-        // 먹었을 때 아기상어의 사이즈 만큼 먹었으면 사이즈업
-        if (shark_size == ++shark_stack) {
-            shark_size++;
-            shark_stack = 0;
+                if (eatingCount == sharkSize) {
+                    sharkSize++;
+                    eatingCount = 0;
+                }
+            } else {
+                break;
+            }
         }
 
-
-
+        System.out.println(count);
     }
 
-    public static void move(int size){
+    private static void bfs(int x, int y) {
+        Queue<Point> queue = new LinkedList<>();
+        queue.add(new Point(x, y));
 
+        while (!queue.isEmpty()) {
+            Point p = queue.poll();
+
+            for (int i = 0; i < 4; i++) {
+                int newX = p.x + dx[i];
+                int newY = p.y + dy[i];
+
+                if (isInArea(newX, newY) && isAbleToMove(newX, newY) && dist[newX][newY] == 0) {
+                    dist[newX][newY] = dist[p.x][p.y] + 1;
+
+                    if (isEatable(newX, newY)) {
+                        if (minDist > dist[newX][newY]) {
+                            minDist = dist[newX][newY];
+                            minX = newX;
+                            minY = newY;
+                        } else if (minDist == dist[newX][newY]) {
+                            if (minX == newX) {
+                                if (minY > newY) {
+                                    minX = newX;
+                                    minY = newY;
+                                }
+                            } else if (minX > newX) {
+                                minX = newX;
+                                minY = newY;
+                            }
+                        }
+                    }
+
+                    queue.add(new Point(newX, newY));
+                }
+            }
+        }
+    }
+
+    private static boolean isAbleToMove(int x, int y) {
+        return map[x][y] <= sharkSize;
+    }
+
+    private static boolean isEatable(int x, int y) {
+        return map[x][y] != 0 && map[x][y] < sharkSize;
+    }
+
+    private static boolean isInArea(int x, int y) {
+        return x <= N && x > 0 && y <= N && y > 0;
     }
 
 
-    public static class Fish{
-        int row;
-        int col;
-        int size;
+    private static class Point {
+        private int x;
+        private int y;
 
-        public Fish(int row, int col, int size) {
-            this.row = row;
-            this.col = col;
-            this.size = size;
+        private Point(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
     }
 }
