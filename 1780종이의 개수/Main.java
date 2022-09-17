@@ -50,7 +50,6 @@ public class Main {
                 map[i][j] = Integer.parseInt(str.nextToken());
             }
         }
-
         // 모두 같은 수로 되어 잇을 때까지
         // 같은 수로 이뤄진 정사각형 갯수 각각 구하기
         checked = new boolean[N][N];
