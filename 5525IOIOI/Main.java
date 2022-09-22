@@ -36,6 +36,13 @@ public class Main {
                 count = 0;
             }
         }
+        int[][] data = new int[][];
+        Arrays.sort(data, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return 0;
+            }
+        })
 
         System.out.println(result);
 

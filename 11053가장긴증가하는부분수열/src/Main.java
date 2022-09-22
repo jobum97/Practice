@@ -24,7 +24,7 @@ public class Main {
 		StringTokenizer str=new StringTokenizer(input.readLine());
 		data=new int[N+1];
 		int max_length=0;
-		
+
 		
 		for(int i=1;i<=N;i++) {
 			data[i]=Integer.parseInt(str.nextToken());
@@ -35,7 +35,7 @@ public class Main {
 		int point=0; // 1~i-1번째까지의 원소 중 i번째 원소 보다 값 작은 것들 중 가장 큰 dp 값
 		
 		//dp 구하는 반복문 
-		
+		dp.
 		for(int i=2;i<=N;i++) {
 			point=0;
 			max_length=0;
