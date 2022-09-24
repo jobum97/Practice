@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Main {
     class Solution {
         public boolean solution(int[][] key, int[][] lock) {
@@ -25,7 +28,6 @@ public class Main {
                     }
                 }
             }
-
             int tempCnt;
             // lock 전부 채우기만 하면됨
             // 좌상단에서 일부분만 겹치게 할 수있는 케이스 고려
